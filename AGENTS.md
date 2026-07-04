@@ -18,9 +18,17 @@ name/location). Same structure as a real user config but **generic** — no pers
 Cloning this and running the rebuild bootstraps a machine.
 
 ## Layout
-- `config.toml` — minimal example configuration to edit.
+- `config.toml` — minimal example configuration to edit; the global base config.
+  **Optional** — a root can be defined entirely by `configs/*.toml` and/or `modules/`
+  (the root is marked by `flake.nix`).
+- `configs/` — extra config dirs (`icedos.system.extraConfigs`, default `["configs"]`):
+  every `*.toml` here is autoloaded and strict-merged onto `config.toml`. A hidden
+  `configs/.<name>.toml` loads too but is gitignored — secrets/host values that stay off
+  git (replaces the old `.private.toml`). A file opts out with a top-level `enable = false`
+  (default true).
+- `modules/` — extra module dirs (`icedos.system.extraModules`, default `["modules"]`):
+  placeholder for advanced custom Nix/IceDOS modules.
 - `flake.nix` — `icedos.lib.mkIceDOS { configRoot = self; }`.
-- `extra-modules/` — placeholder for advanced custom modules.
 - `README.md` — install instructions (points at the core README + example user configs).
 - `.editorconfig`, `.taplo.toml` — formatting for TOML/editors.
 - `.state/` — generated; not hand-edited.

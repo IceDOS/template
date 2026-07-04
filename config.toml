@@ -1,10 +1,7 @@
-[[icedos.repositories]]
-url = "github:icedos/hardware"
-
-[icedos.hardware.bootloaders.systemd-boot]
-mountPoint = "/boot"
-
 [icedos.system]
 version = "25.11"
+
+[icedos.system.bootloaders.systemd-boot]
+mountPoint = "/boot"
 
 [icedos.users.username]
